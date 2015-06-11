@@ -9,6 +9,10 @@ public class Estoque {
         this.ID_estoque = ID_estoque;
     }
 
+    public Estoque(int Quantidade) {
+        this.Quantidade = Quantidade;
+    }
+
     public int getQuantidade() {
         return Quantidade;
     }

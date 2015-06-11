@@ -56,15 +56,15 @@ public class ClienteController {
             int count = 0;
             while (result.next()){
                                     System.out.println(result);
-                String Nome_cliente = result.getString("Nome_cliente");
-                String Endereco = result.getString("Endereco");
-                String Email_cliente = result.getString("Email_cliente");
+                String nome_cliente = result.getString("nome_cliente");
+                String endereco = result.getString("endereco");
+                String email_cliente = result.getString("email_cliente");
                 String RG_cliente = result.getString("RG_cliente");
                 String CPF_cliente = result.getString("CPF_cliente");
-                int Telefone = result.getInt("Telefone");
+                int telefone = result.getInt("telefone");
                 
                 String output = "Dono #%d: %s - %s - %s - %s - %s - %s";
-                System.out.println(String.format(output, ++count,Nome_cliente, Endereco, Email_cliente, RG_cliente, CPF_cliente, Telefone));
+                System.out.println(String.format(output, ++count,nome_cliente, endereco, email_cliente, RG_cliente, CPF_cliente, telefone));
                                 
                                 statement.close();
                                 conexao.close();
