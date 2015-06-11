@@ -3,19 +3,11 @@ package Model;
 
 
 public class ProdutoVendido {
-    String Quantidade;
-    int ID_Item;
+    
+    int ID_Item ,Quantidade;
 
-    public ProdutoVendido(String Quantidade, int ID_Item) {
-        this.Quantidade = Quantidade;
+    public ProdutoVendido(int ID_Item, int Quantidade) {
         this.ID_Item = ID_Item;
-    }
-
-    public String getQuantidade() {
-        return Quantidade;
-    }
-
-    public void setQuantidade(String Quantidade) {
         this.Quantidade = Quantidade;
     }
 
@@ -26,5 +18,13 @@ public class ProdutoVendido {
     public void setID_Item(int ID_Item) {
         this.ID_Item = ID_Item;
     }
-    
+
+    public int getQuantidade() {
+        return Quantidade;
+    }
+
+    public void setQuantidade(int Quantidade) {
+        this.Quantidade = Quantidade;
+    }
+  
 }

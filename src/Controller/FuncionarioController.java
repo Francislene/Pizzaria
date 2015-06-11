@@ -65,7 +65,7 @@ public class FuncionarioController {
            //login_Funcionario, senha, CPF_Funcionario, tipo_de_acesso,
            //endereco_Funcionario, carteira_de_trabalho
                 
-                String output = "Agenda #%d: %s - %s - %s";
+                String output = "Agenda #%d: %s - %s - %s - %s - %s - %s - %s - %s - %s - %s";
                 System.out.println(String.format(output, ++count, nome_Funcionario, telefone, email_Funcionario, RG_Funcionario, login_Funcionario, senha, CPF_Funcionario, tipo_de_acesso, endereco_Funcionario, carteira_de_trabalho  ));
                                 
                                 statement.close();
@@ -101,5 +101,3 @@ if (rowsUpdated > 0) {
 }
   }
 }
-
-
