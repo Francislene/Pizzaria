@@ -19,7 +19,7 @@ public void inserirEstoque(Estoque E) throws SQLException {
         try {
             
             Util util = new Util(); // inicializar a classe util
-            Connection conexao = util.conecta();//utilizar o método conecta da classe util
+            Connection conexao = Util.conecta();//utilizar o método conecta da classe util
             
             
                 //String nome_cliente, endereco, email_cliente, RG_cliente, CPF_cliente; 
@@ -44,7 +44,7 @@ public void inserirEstoque(Estoque E) throws SQLException {
         try {
             String sql = "SELECT * FROM Estoque";
             Util util = new Util(); // inicializar a classe util
-             Connection conexao = util.conecta();//utilizar o método conecta da classe util
+             Connection conexao = Util.conecta();//utilizar o método conecta da classe util
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
             int count = 0;
@@ -83,18 +83,16 @@ if (rowsUpdated > 0) {
             String sql = "SELECT * FROM Estoque";
 
             Util util = new Util();
-            Connection conexao = util.conecta();
-            Statement statement = conexao.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            ArrayList<Estoque> lista = new ArrayList<Estoque>();
-            int count = 0;
-            while (result.next()) {
-            Estoque E = new Estoque(result.getInt("Quantidade"));
-            lista.add(E);
-            }
-
-            statement.close();
-            conexao.close();
+          ArrayList<Estoque> lista;
+          try (Connection conexao = Util.conecta(); Statement statement = conexao.createStatement()) {
+              ResultSet result = statement.executeQuery(sql);
+              lista = new ArrayList<>();
+              int count = 0;
+              while (result.next()) {
+              Estoque E = new Estoque(result.getInt("Quantidade"));
+              lista.add(E);
+              }
+          }
             return lista;
 
         } catch (SQLException e) {
@@ -123,7 +121,7 @@ if (rowsUpdated > 0) {
 //    consultar no banco o usuário que tem nome igual ao Nome, retornar o ID desse usuário
 try{
     Util util = new Util();
-    Connection conexao = util.conecta();
+    Connection conexao = Util.conecta();
     String sql = "Select ID from Estoque where Quantidade like '"+Quantidade+"'";
     Statement statement = conexao.createStatement();
     ResultSet result = statement.executeQuery(sql);

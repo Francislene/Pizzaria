@@ -2,17 +2,17 @@ package Model;
 
 
 public class Produto {
-    String Valor_Compra, Qtd_Min, Plataforma, Tipo, Nome, Valor_Venda;
-    int ID_Produto;
+    String Valor_Compra, Plataforma, Tipo, Nome, Valor_Venda;
+    int ID_Produto,Qtd_Min;
 
-    public Produto(String Valor_Compra, String Qtd_Min, String Plataforma, String Tipo, String Nome, String Valor_Venda, int ID_Produto) {
+    public Produto(String Valor_Compra, String Plataforma, String Tipo, String Nome, String Valor_Venda, int ID_Produto, int Qtd_Min) {
         this.Valor_Compra = Valor_Compra;
-        this.Qtd_Min = Qtd_Min;
         this.Plataforma = Plataforma;
         this.Tipo = Tipo;
         this.Nome = Nome;
         this.Valor_Venda = Valor_Venda;
         this.ID_Produto = ID_Produto;
+        this.Qtd_Min = Qtd_Min;
     }
 
     public String getValor_Compra() {
@@ -21,14 +21,6 @@ public class Produto {
 
     public void setValor_Compra(String Valor_Compra) {
         this.Valor_Compra = Valor_Compra;
-    }
-
-    public String getQtd_Min() {
-        return Qtd_Min;
-    }
-
-    public void setQtd_Min(String Qtd_Min) {
-        this.Qtd_Min = Qtd_Min;
     }
 
     public String getPlataforma() {
@@ -70,5 +62,13 @@ public class Produto {
     public void setID_Produto(int ID_Produto) {
         this.ID_Produto = ID_Produto;
     }
-    
+
+    public int getQtd_Min() {
+        return Qtd_Min;
+    }
+
+    public void setQtd_Min(int Qtd_Min) {
+        this.Qtd_Min = Qtd_Min;
+    }
+
 }

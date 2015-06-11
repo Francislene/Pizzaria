@@ -150,7 +150,7 @@ if (rowsUpdated > 0) {
 //    consultar no banco o usuário que tem nome igual ao Nome, retornar o ID desse usuário
 try{
     Util util = new Util();
-    Connection conexao = util.conecta();
+    Connection conexao = Util.conecta();
     String sql = "Select ID from Cliente where Nome_cliente like '"+Nome_cliente+"'";
     Statement statement = conexao.createStatement();
     ResultSet result = statement.executeQuery(sql);
