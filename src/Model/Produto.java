@@ -2,16 +2,26 @@ package Model;
 
 
 public class Produto {
-    String Valor_Compra, Plataforma, Tipo, Nome, Valor_Venda;
+    String Valor_Compra, Plataforma, Tipo, Nome;
+    float Valor_Venda;
     int ID_Produto,Qtd_Min;
 
-    public Produto(String Valor_Compra, String Plataforma, String Tipo, String Nome, String Valor_Venda, int ID_Produto, int Qtd_Min) {
+    public Produto(String Valor_Compra, String Plataforma, String Tipo, String Nome, Float Valor_Venda, int ID_Produto, int Qtd_Min) {
         this.Valor_Compra = Valor_Compra;
         this.Plataforma = Plataforma;
         this.Tipo = Tipo;
         this.Nome = Nome;
         this.Valor_Venda = Valor_Venda;
         this.ID_Produto = ID_Produto;
+        this.Qtd_Min = Qtd_Min;
+    }
+
+    public Produto(String Valor_Compra, String Plataforma, String Tipo, String Nome, float Valor_Venda, int Qtd_Min) {
+        this.Valor_Compra = Valor_Compra;
+        this.Plataforma = Plataforma;
+        this.Tipo = Tipo;
+        this.Nome = Nome;
+        this.Valor_Venda = Valor_Venda;
         this.Qtd_Min = Qtd_Min;
     }
 
@@ -47,11 +57,11 @@ public class Produto {
         this.Nome = Nome;
     }
 
-    public String getValor_Venda() {
+    public Float getValor_Venda() {
         return Valor_Venda;
     }
 
-    public void setValor_Venda(String Valor_Venda) {
+    public void setValor_Venda(Float Valor_Venda) {
         this.Valor_Venda = Valor_Venda;
     }
 

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pizzaria.Util;
@@ -28,9 +29,9 @@ public class ProdutoController {
               statement.setString(2,P.getPlataforma());
               statement.setString(3,P.getTipo());
               statement.setString(4,P.getNome());
-              statement.setString(5,P.getValor_Venda());
-              statement.setInt(6,P.getID_Produto());
-              statement.setInt(7,P.getQtd_Min());
+              statement.setFloat(5,P.getValor_Venda());
+              
+              statement.setInt(6,P.getQtd_Min());
 
                 int rowsInserted = statement.executeUpdate(); // Executa a inserção e retorna valor != 0 se inseriu (ID de inserção do banco)
                 if (rowsInserted > 0) {
@@ -53,14 +54,14 @@ public class ProdutoController {
                                     System.out.println(result);
                 String Valor_Compra = result.getString("Valor_Compra");
                 String Plataforma = result.getString("Plataforma");
+                String Tipo = result.getString("Tipo");
                 String Nome = result.getString("Nome");
-                String Valor_Venda = result.getString("Valor_Venda");
-                int ID_Produto = result.getInt("ID_Produto");
-                int Qtd_Min = result.getInt("Qtd_Min");
+                float Valor_Venda = result.getFloat("Valor_Venda");
+                 int Qtd_Min = result.getInt("Qtd_Min");
                 
                 String output = "Produto #%d: %s - %s - %s - %s - %s - %s";
-                System.out.println(String.format(output, ++count,Valor_Compra, Plataforma, Tipo, Nome, Valor_Venda));
-                                
+                System.out.println(String.format(output, ++count,Valor_Compra, Plataforma, Tipo, Nome, Valor_Venda, Qtd_Min));
+                             
                                 statement.close();
                                 conexao.close();
             }
@@ -70,16 +71,16 @@ public class ProdutoController {
     }
   
   public void atualiza() throws SQLException{
-  String sql = "UPDATE Cliente SET Nome_cliente=?, Endereco=?, Email_cliente=?, RG_cliente=?, CPF_cliente=?, Telefone=? ";
+  String sql = "UPDATE Cliente SET Valor_Compra=?, Plataforma=?, Tipo=?, Nome=?, Valor_Venda=?, Qtd_Min=? ";
   Connection conexao = null;
  
 PreparedStatement statement = conexao.prepareStatement(sql);{
-            statement.setString(1, "Arthur");
-            statement.setString(2, "Rua x");
-            statement.setString(3, "Thur@hotmail.com");
-            statement.setString(4, "MG 845751");
-            statement.setString(5, "465465465");
-            statement.setString(6, "3584145896");
+            statement.setString(1, "10");
+            statement.setString(2, "1");
+            statement.setString(3, "Comestivel");
+            statement.setString(4, "Molho");
+            statement.setFloat(5, 1025 );
+            statement.setInt(6, 6);
             
 int rowsUpdated = statement.executeUpdate();
 if (rowsUpdated > 0) {
@@ -90,17 +91,18 @@ if (rowsUpdated > 0) {
   
   public ArrayList getAll() throws SQLException {
         try {
-            String sql = "SELECT * FROM Cliente";
+            String sql = "SELECT * FROM Produto";
 
             Util util = new Util();
             Connection conexao = util.conecta();
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
-            ArrayList<Cliente> lista = new ArrayList<Cliente>();
+            ArrayList<Produto> lista = new ArrayList<Produto>();
             int count = 0;
             while (result.next()) {
-            Cliente C = new Cliente(result.getString("Nome_cliente"), result.getString("Endereco"), result.getString("Email_cliente"), result.getString("RG_cliente"), result.getString("CPF_cliente"),result.getInt("Telefone"));
-            lista.add(C);
+            Produto P = new Produto(result.getString("Valor_Compra"), result.getString("Plataforma"), result.getString("Tipo"), result.getString("Nome"), result.getFloat("Valor_Venda"),result.getInt("Qtd_Min"));
+          
+            lista.add(P);
             }
 
             statement.close();
@@ -126,39 +128,7 @@ if (rowsUpdated > 0) {
             
         return v;
   }
-  public Cliente getPessoaByCPF(String CPF_cliente) throws SQLException {
-        String sql = "SELECT * FROM Cliente WHERE CPF like '%" + CPF_cliente + "%'"; //Consulta SQL
-        Util util = new Util(); //inicializando minha classe q faz conexão com banco de dados
-        Connection conexao = Util.conecta(); //faz a conexão com banco
-        Statement statement = conexao.createStatement();//usa da conqxão para pegar a credencial para acesso ao banco
-        ResultSet result = statement.executeQuery(sql);//executa a consulta SQL e agora retoena valores, por isso ResultSet
-        Cliente C = null;  //declaração de variavel  pessoa 
-        while (result.next()) {
-        C = new Cliente(result.getString("Nome_cliente"), result.getString("Endereco"), result.getString("Email_cliente"), result.getString("RG_cliente"), result.getString("CPF_cliente"),result.getInt("Telefone"));// inicializa pessoa
-        }
-        return C;
 
-    }
-  public int getIdByNome_cliente(String Nome_cliente){
-      
-      int id=-1;
-//    consultar no banco o usuário que tem nome igual ao Nome, retornar o ID desse usuário
-try{
-    Util util = new Util();
-    Connection conexao = util.conecta();
-    String sql = "Select ID from Cliente where Nome_cliente like '"+Nome_cliente+"'";
-    Statement statement = conexao.createStatement();
-    ResultSet result = statement.executeQuery(sql);
-    while (result.next()){
-        id=result.getInt("ID");
-       
-    }
-}catch (SQLException ex ){
-    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE,null,ex);
-    
-    }
-    return id;
-} 
   }
 
 
