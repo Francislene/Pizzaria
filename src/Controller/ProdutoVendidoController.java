@@ -62,7 +62,7 @@ public class ProdutoVendidoController {
   Connection conexao = null;
  
 PreparedStatement statement = conexao.prepareStatement(sql);{
-            statement.setString(1, "2");
+            statement.setInt(1,5);
             
             
         
@@ -73,5 +73,6 @@ if (rowsUpdated > 0) {
     
 }
   }
+   
 }  
 
