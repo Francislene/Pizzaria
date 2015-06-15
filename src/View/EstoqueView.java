@@ -5,10 +5,13 @@
 package View;
 
 import Controller.EstoqueController;
+import Controller.ProdutoController;
 import Model.Estoque;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -37,11 +40,14 @@ public class EstoqueView extends javax.swing.JFrame {
         botaoMenu = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         botaoLimpar = new javax.swing.JButton();
+        combo_Produto = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("Quantidade");
 
+        botaoMenu.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         botaoMenu.setText("Menu");
         botaoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +55,7 @@ public class EstoqueView extends javax.swing.JFrame {
             }
         });
 
+        botaoSalvar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         botaoSalvar.setText("Salvar");
         botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +63,20 @@ public class EstoqueView extends javax.swing.JFrame {
             }
         });
 
+        botaoLimpar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         botaoLimpar.setText("Limpar");
+        botaoLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLimparActionPerformed(evt);
+            }
+        });
+
+        combo_Produto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_Produto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combo_ProdutoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,8 +94,11 @@ public class EstoqueView extends javax.swing.JFrame {
                         .addComponent(botaoLimpar)
                         .addGap(91, 91, 91)
                         .addComponent(botaoSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addComponent(botaoMenu)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addComponent(botaoMenu))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(combo_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -85,7 +108,9 @@ public class EstoqueView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(QuantidadeEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(combo_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoMenu)
                     .addComponent(botaoSalvar)
@@ -114,6 +139,22 @@ public class EstoqueView extends javax.swing.JFrame {
             Logger.getLogger(EstoqueView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
+        // TODO add your handling code here:
+        QuantidadeEstoque.setText(""); 
+    }//GEN-LAST:event_botaoLimparActionPerformed
+
+    private void combo_ProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_ProdutoMouseClicked
+        try {
+            // TODO add your handling code here:
+            ProdutoController p = new ProdutoController();
+                Vector v = p.getNomes();
+                combo_Produto.setModel(new DefaultComboBoxModel(v));
+        } catch (SQLException ex) {
+            Logger.getLogger(EstoqueView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_combo_ProdutoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -154,6 +195,7 @@ public class EstoqueView extends javax.swing.JFrame {
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoSalvar;
+    private javax.swing.JComboBox combo_Produto;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

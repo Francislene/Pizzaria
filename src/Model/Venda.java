@@ -8,6 +8,11 @@ public class Venda {
         this.Data = Data;
     }
 
+    public Venda(int Data) {
+        this.Data = Data;
+    }
+    
+
     public int getIdVenda() {
         return idVenda;
     }

@@ -22,45 +22,57 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="botaoCliente" max="32767" attributes="0"/>
-                  <Component id="botaoProduto" pref="115" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="botaoCliente" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                          <Component id="botaoEstoque" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="botaoProduto" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                          <Component id="botaoFuncionario" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="botaoProdutoVendido" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                          <Component id="botaoVenda" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel1" max="32767" attributes="0"/>
-                  <Component id="botaoEstoque" alignment="0" max="32767" attributes="0"/>
-                  <Component id="botaoProdutoVendido" alignment="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="botaoFuncionario" pref="100" max="32767" attributes="0"/>
-                  <Component id="botaoVenda" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="191" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="botaoEstoque" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="botaoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoProdutoVendido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoVenda" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="131" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="botaoCliente" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="botaoEstoque" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="botaoProduto" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="botaoFuncionario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="botaoProdutoVendido" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="botaoVenda" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,6 +80,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="botaoCliente">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cliente"/>
       </Properties>
       <Events>
@@ -76,6 +91,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="botaoEstoque">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Estoque"/>
       </Properties>
       <Events>
@@ -84,6 +102,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="botaoFuncionario">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Funcionario"/>
       </Properties>
       <Events>
@@ -92,6 +113,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="botaoProduto">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Produto"/>
       </Properties>
       <Events>
@@ -100,6 +124,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="botaoProdutoVendido">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Produto Vendido"/>
       </Properties>
       <Events>
@@ -108,6 +135,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="botaoVenda">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Venda"/>
       </Properties>
       <Events>
@@ -116,6 +146,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="MENU PRINCIPAL"/>
       </Properties>
     </Component>
