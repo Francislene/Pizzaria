@@ -18,11 +18,10 @@ import pizzaria.Util;
 
    
 public class ProdutoController {
-    private String sql;
     
   public void inserirProduto(Produto P) throws SQLException {
         try {
-            
+            String sql = "INSERT INTO Produto (Valor_Compra,Plataforma,Tipo,Nome,Valor_Venda,Qtd_Min) VALUES (?,?,?,?,?,?)";
             Util util = new Util(); // inicializar a classe util
           try (Connection conexao = Util.conecta(); PreparedStatement statement = conexao.prepareStatement(sql)) {
               statement.setString(1,P.getValor_Compra());
@@ -30,7 +29,6 @@ public class ProdutoController {
               statement.setString(3,P.getTipo());
               statement.setString(4,P.getNome());
               statement.setFloat(5,P.getValor_Venda());
-              
               statement.setInt(6,P.getQtd_Min());
 
                 int rowsInserted = statement.executeUpdate(); // Executa a inserção e retorna valor != 0 se inseriu (ID de inserção do banco)
