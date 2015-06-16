@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pizzaria.Util;
 
 public class ProdutoVendidoController {
@@ -74,19 +76,41 @@ if (rowsUpdated > 0) {
     
 }
   }
-   public Vector getNomes() throws SQLException{
-      String sql = "SELECT Nome FROM Produto";
+  public Vector getNomes() throws SQLException{
+      String sql = "SELECT Quantidade FROM ProdutoVendido";
       Vector v = new Vector();
             Util util = new Util();
             Connection conexao = util.conecta();
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
             while(result.next()){
-                v.add(result.getString("Nome"));
+                v.add(result.getString("Quantidade"));
             }
             
         return v;
-  }
+  } 
+  
+  public int getIdByQuantidade(String quantidade){
+      
+      int id=-1;
+//    consultar no banco o usuário que tem nome igual ao Nome, retornar o ID desse usuário
+try{
+    Util util = new Util();
+    Connection conexao = Util.conecta();
+    String sql = "Select ID_Item from Quantidade where Nome like '"+quantidade+"'";
+    Statement statement = conexao.createStatement();
+    ResultSet result = statement.executeQuery(sql);
+    while (result.next()){
+        id=result.getInt("ID_Item");
+       
+    }
+}catch (SQLException ex ){
+    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE,null,ex);
+    
+    }
+    return id;
+} 
+
 
    
 }  

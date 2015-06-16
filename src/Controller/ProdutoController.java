@@ -113,7 +113,9 @@ if (rowsUpdated > 0) {
         }
     }
   
-  public Vector getNomes() throws SQLException{
+
+
+   public Vector getNomes() throws SQLException{
       String sql = "SELECT Nome FROM Produto";
       Vector v = new Vector();
             Util util = new Util();
@@ -125,10 +127,30 @@ if (rowsUpdated > 0) {
             }
             
         return v;
-  }
-
+  } 
+  
+  public int getIdByNome_produto(String produto_nome){
+      
+      int id=-1;
+//    consultar no banco o usuário que tem nome igual ao Nome, retornar o ID desse usuário
+try{
+    Util util = new Util();
+    Connection conexao = Util.conecta();
+    String sql = "Select ID_Produto from Produto where Nome like '"+produto_nome+"'";
+    Statement statement = conexao.createStatement();
+    ResultSet result = statement.executeQuery(sql);
+    while (result.next()){
+        id=result.getInt("ID_Produto");
+       
+    }
+}catch (SQLException ex ){
+    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE,null,ex);
     
+    }
+    return id;
+} 
 
+   
    
 
   }

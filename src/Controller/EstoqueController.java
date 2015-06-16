@@ -26,9 +26,10 @@ public void inserirEstoque(Estoque E) throws SQLException {
    
             
             
-          String sql = "INSERT INTO Estoque (Quantidade) VALUES (?)";
+          String sql = "INSERT INTO Estoque (Produto_ID_Produto, Quantidade) VALUES (?,?)";
           PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
-          statement.setInt(1,E.getQuantidade());
+          statement.setInt(2,E.getQuantidade());
+            statement.setInt(1,E.getID_Produto());
              
             int rowsInserted = statement.executeUpdate(); // Executa a inserção e retorna valor != 0 se inseriu (ID de inserção do banco)
             if (rowsInserted > 0) {
@@ -89,7 +90,7 @@ if (rowsUpdated > 0) {
               lista = new ArrayList<>();
               int count = 0;
               while (result.next()) {
-              Estoque E = new Estoque(result.getInt("Quantidade"));
+              Estoque E = new Estoque(result.getInt("Quantidade"),result.getInt("Produto_ID_Produto"));
               lista.add(E);
               }
           }

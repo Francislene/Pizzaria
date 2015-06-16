@@ -2,15 +2,19 @@ package Model;
 
 
 public class Estoque {
-   int  Quantidade, ID_estoque; 
+   int  Quantidade, ID_estoque,ID_Produto; 
 
-    public Estoque(int Quantidade, int ID_estoque) {
+    public Estoque(int Quantidade, int ID_Produto) {
         this.Quantidade = Quantidade;
-        this.ID_estoque = ID_estoque;
+        this.ID_Produto = ID_Produto;
     }
 
-    public Estoque(int Quantidade) {
-        this.Quantidade = Quantidade;
+    public int getID_Produto() {
+        return ID_Produto;
+    }
+
+    public void setID_Produto(int ID_Produto) {
+        this.ID_Produto = ID_Produto;
     }
 
     public int getQuantidade() {
