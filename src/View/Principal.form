@@ -22,36 +22,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botaoCliente" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
-                          <Component id="botaoEstoque" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botaoProduto" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
-                          <Component id="botaoFuncionario" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botaoProdutoVendido" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
-                          <Component id="botaoVenda" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="191" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="botaoCliente" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                  <Component id="botaoEstoque" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                  <Component id="botaoProduto" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                  <Component id="botaoFuncionario" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                  <Component id="botaoProdutoVendido" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+                  <Component id="botaoVenda" alignment="0" min="-2" pref="425" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

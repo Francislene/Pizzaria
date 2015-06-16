@@ -131,7 +131,7 @@ public class EstoqueView extends javax.swing.JFrame {
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         try {
             // TODO add your handling code here:
-             Estoque e = new Estoque (0);
+             Estoque e = new Estoque (0,0);
                             
                            EstoqueController estoqueController = new EstoqueController();
                            estoqueController.inserirEstoque(e);
