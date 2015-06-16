@@ -102,6 +102,20 @@ if (rowsUpdated > 0) {
 }
   }
 
+  public Vector getNomes() throws SQLException{
+      String sql = "SELECT nome_Funcionario FROM Funcionario";
+      Vector v = new Vector();
+            Util util = new Util();
+            Connection conexao = util.conecta();
+            Statement statement = conexao.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                v.add(result.getString("nome_Funcionario"));
+            }
+            
+        return v;
+  }
+
     
 
 }

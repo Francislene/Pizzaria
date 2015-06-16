@@ -46,6 +46,8 @@ public class VendaView extends javax.swing.JFrame {
         Salvar = new javax.swing.JButton();
         limpa = new javax.swing.JButton();
         combo_cliente = new javax.swing.JComboBox();
+        combo_ProdutoVendido = new javax.swing.JComboBox();
+        combo_funcionario = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +85,20 @@ public class VendaView extends javax.swing.JFrame {
             }
         });
 
+        combo_ProdutoVendido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_ProdutoVendido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combo_ProdutoVendidoMouseClicked(evt);
+            }
+        });
+
+        combo_funcionario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_funcionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combo_funcionarioMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,7 +112,12 @@ public class VendaView extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(dataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62)
+                                .addComponent(combo_ProdutoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)
+                                .addComponent(combo_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 36, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(limpa)
@@ -114,7 +135,10 @@ public class VendaView extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(dataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_ProdutoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(menu)
@@ -162,6 +186,28 @@ public class VendaView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_combo_clienteMouseClicked
 
+    private void combo_ProdutoVendidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_ProdutoVendidoMouseClicked
+        try {
+            // TODO add your handling code here:
+             ProdutoVendidoController c = new ProdutoVendidoController();
+                        Vector v = c.getNomes();
+                        combo_ProdutoVendido.setModel(new DefaultComboBoxModel(v));
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_combo_ProdutoVendidoMouseClicked
+
+    private void combo_funcionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_funcionarioMouseClicked
+        try {
+            // TODO add your handling code here:
+            FuncionarioController f = new FuncionarioController();
+                            Vector v = f.getNomes();
+                            combo_ProdutoVendido.setModel(new DefaultComboBoxModel(v));
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_combo_funcionarioMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -198,7 +244,9 @@ public class VendaView extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Salvar;
+    private javax.swing.JComboBox combo_ProdutoVendido;
     private javax.swing.JComboBox combo_cliente;
+    private javax.swing.JComboBox combo_funcionario;
     private javax.swing.JTextField dataVenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton limpa;

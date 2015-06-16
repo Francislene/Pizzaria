@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 import pizzaria.Util;
 
 public class ProdutoVendidoController {
@@ -73,6 +74,20 @@ if (rowsUpdated > 0) {
     
 }
   }
+   public Vector getNomes() throws SQLException{
+      String sql = "SELECT Nome FROM Produto";
+      Vector v = new Vector();
+            Util util = new Util();
+            Connection conexao = util.conecta();
+            Statement statement = conexao.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                v.add(result.getString("Nome"));
+            }
+            
+        return v;
+  }
+
    
 }  
 

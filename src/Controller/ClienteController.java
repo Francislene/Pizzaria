@@ -119,14 +119,14 @@ if (rowsUpdated > 0) {
     }
   
   public Vector getNomes() throws SQLException{
-      String sql = "SELECT Nome_cliente FROM Cliente";
+      String sql = "SELECT nome_cliente FROM Cliente";
       Vector v = new Vector();
             Util util = new Util();
             Connection conexao = util.conecta();
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
             while(result.next()){
-                v.add(result.getString("Nome_cliente"));
+                v.add(result.getString("nome_cliente"));
             }
             
         return v;
@@ -164,5 +164,9 @@ try{
     }
     return id;
 } 
+
+   
+ 
+ 
   }
 
