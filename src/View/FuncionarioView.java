@@ -7,6 +7,10 @@ package View;
 import Controller.ClienteController;
 import Controller.FuncionarioController;
 import Model.Cliente;
+import Model.Funcionario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,7 +45,7 @@ public class FuncionarioView extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         Carteira_de_trabalho = new javax.swing.JTextField();
-        RGl_Funcionario = new javax.swing.JTextField();
+        RG_Funcionario = new javax.swing.JTextField();
         Email_Funcionario = new javax.swing.JTextField();
         Senha = new javax.swing.JTextField();
         Login_Funcionario = new javax.swing.JTextField();
@@ -143,17 +147,18 @@ public class FuncionarioView extends javax.swing.JFrame {
                                         .addGap(51, 51, 51)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6)
                                             .addComponent(jLabel9)
-                                            .addComponent(jLabel11)))))
+                                            .addComponent(jLabel11)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Endereco_Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Tipo_de_acesso, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RGl_Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RG_Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(133, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -165,7 +170,7 @@ public class FuncionarioView extends javax.swing.JFrame {
                         .addGap(101, 101, 101))))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {CPF_Funcionario, Carteira_de_trabalho, Email_Funcionario, Endereco_Funcionario, Login_Funcionario, Nome_Funcionario, RGl_Funcionario, Senha, Telefone, Tipo_de_acesso});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {CPF_Funcionario, Carteira_de_trabalho, Email_Funcionario, Endereco_Funcionario, Login_Funcionario, Nome_Funcionario, RG_Funcionario, Senha, Telefone, Tipo_de_acesso});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +190,7 @@ public class FuncionarioView extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(Email_Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(RGl_Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RG_Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -219,7 +224,7 @@ public class FuncionarioView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CPF_Funcionario, Carteira_de_trabalho, Email_Funcionario, Endereco_Funcionario, Login_Funcionario, Nome_Funcionario, RGl_Funcionario, Senha, Telefone, Tipo_de_acesso});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CPF_Funcionario, Carteira_de_trabalho, Email_Funcionario, Endereco_Funcionario, Login_Funcionario, Nome_Funcionario, RG_Funcionario, Senha, Telefone, Tipo_de_acesso});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -237,20 +242,28 @@ public class FuncionarioView extends javax.swing.JFrame {
 
     private void LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparActionPerformed
         // TODO add your handling code here:
-        Nome_cliente.setText("");
-        Endereco.setText("");
-        Email_cliente.setText("");
-        RG_cliente.setText("");
-        CPF_cliente.setText("");
-        Telefone.setText("");
+       Nome_Funcionario.setText("");
+       Telefone.setText("");
+       Email_Funcionario.setText("");
+       RG_Funcionario.setText("");
+       Login_Funcionario.setText("");
+       CPF_Funcionario.setText("");
+       Tipo_de_acesso.setText("");
+       Endereco_Funcionario.setText("");
+       Carteira_de_trabalho.setText("");
+       Senha.setText("");
     }//GEN-LAST:event_LimparActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-        // TODO add your handling code here:
-        Funcionario F = new Funcionario (this.Nome_cliente.getText(),this.Endereco.getText(),this.Email_cliente.getText(),this.RG_cliente.getText(),this.CPF_cliente.getText(),0,0);
-              
-                               FuncionarioController funcionarioController = new FuncionarioController();
-                               funcionarioController.inserirFuncionario(F);
+        try {
+            // TODO add your handling code here:
+            Funcionario F = new Funcionario (this.Nome_Funcionario.getText(),this.CPF_Funcionario.getText(),this.Email_Funcionario.getText(),this.RG_Funcionario.getText(),this.Login_Funcionario.getText(),this.Tipo_de_acesso.getText(),this.Endereco_Funcionario.getText(),this.Carteira_de_trabalho.getText(),this.Senha.getText(),this.Telefone.getText(),0);
+                                                                                                                                                            
+                                   FuncionarioController funcionarioController = new FuncionarioController();
+                                   funcionarioController.inserirFuncionario(F);
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_SalvarActionPerformed
 
     /**
@@ -296,7 +309,7 @@ public class FuncionarioView extends javax.swing.JFrame {
     private javax.swing.JTextField Login_Funcionario;
     private javax.swing.JButton Menu;
     private javax.swing.JTextField Nome_Funcionario;
-    private javax.swing.JTextField RGl_Funcionario;
+    private javax.swing.JTextField RG_Funcionario;
     private javax.swing.JButton Salvar;
     private javax.swing.JTextField Senha;
     private javax.swing.JTextField Telefone;

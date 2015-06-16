@@ -56,10 +56,12 @@
                                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" min="-2" pref="14" max="-2" attributes="0"/>
-                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -71,7 +73,7 @@
                           <Component id="Senha" linkSize="1" min="-2" pref="91" max="-2" attributes="0"/>
                           <Component id="Endereco_Funcionario" linkSize="1" alignment="0" min="-2" pref="19" max="-2" attributes="0"/>
                           <Component id="Tipo_de_acesso" linkSize="1" min="-2" pref="115" max="-2" attributes="0"/>
-                          <Component id="RGl_Funcionario" linkSize="1" min="-2" pref="94" max="-2" attributes="0"/>
+                          <Component id="RG_Funcionario" linkSize="1" min="-2" pref="94" max="-2" attributes="0"/>
                           <Component id="Telefone" linkSize="1" alignment="0" min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="133" max="32767" attributes="0"/>
@@ -108,7 +110,7 @@
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Email_Funcionario" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="RGl_Funcionario" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RG_Funcionario" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -208,7 +210,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Carteira_de_trabalho">
     </Component>
-    <Component class="javax.swing.JTextField" name="RGl_Funcionario">
+    <Component class="javax.swing.JTextField" name="RG_Funcionario">
     </Component>
     <Component class="javax.swing.JTextField" name="Email_Funcionario">
     </Component>
