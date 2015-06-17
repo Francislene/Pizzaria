@@ -1,13 +1,17 @@
 
 package Controller;
 
+import Model.Cliente;
 import Model.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pizzaria.Util;
 
 
@@ -102,6 +106,32 @@ if (rowsUpdated > 0) {
 }
   }
 
+  
+  public ArrayList getAll() throws SQLException {
+        try {
+            String sql = "SELECT * FROM Funcionario";
+
+            Util util = new Util();
+            Connection conexao = util.conecta();
+            Statement statement = conexao.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+                ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
+            int count = 0;
+            while (result.next()) {
+            Funcionario F = new Funcionario(result.getString("nome_Funcionario"),  result.getString("telefone"), result.getString("email_Funcionario"),result.getString("RG_Funcionario"), result.getString("login_Funcionario"),result.getString(" senha"),result.getString("CPF_Funcionario"),result.getString("tipo_de_acesso"),result.getString("endereco_Funcionario"),result.getString("carteira_de_trabalho"));
+            lista.add(F);
+            }
+
+            statement.close();
+            conexao.close();
+            return lista;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+  
   public Vector getNomes() throws SQLException{
       String sql = "SELECT nome_Funcionario FROM Funcionario";
       Vector v = new Vector();
@@ -115,7 +145,26 @@ if (rowsUpdated > 0) {
             
         return v;
   }
-
+ 
+  public int getIdBynome_Funcionario(String nome_Funcionario){
+      
+      int id=-1;
+//    consultar no banco o usuário que tem nome igual ao Nome, retornar o ID desse usuário
+try{
+    Util util = new Util();
+    Connection conexao = Util.conecta();
+    String sql = "Select ID from Funcionario where nome_Funcionario like '"+nome_Funcionario+"'";
+    Statement statement = conexao.createStatement();
+    ResultSet result = statement.executeQuery(sql);
+    while (result.next()){
+        id=result.getInt("ID");
+       
+    }
+}catch (SQLException ex ){
+    Logger.getLogger(FuncionarioController.class.getName()).log(Level.SEVERE,null,ex);
     
+    }
+    return id;
+} 
 
 }

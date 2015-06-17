@@ -134,7 +134,7 @@ public class EstoqueView extends javax.swing.JFrame {
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         try {
             // TODO add your handling code here:
-             EstoqueController estoqueController = new EstoqueController();
+     EstoqueController estoqueController = new EstoqueController();
           //capturar o id do produto
              ProdutoController p = new ProdutoController();
              

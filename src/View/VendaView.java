@@ -11,6 +11,7 @@ import Controller.ProdutoController;
 import Controller.ProdutoVendidoController;
 import Controller.VendaController;
 import Model.Estoque;
+import Model.ProdutoVendido;
 import Model.Venda;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -46,13 +47,22 @@ public class VendaView extends javax.swing.JFrame {
         Salvar = new javax.swing.JButton();
         limpa = new javax.swing.JButton();
         combo_cliente = new javax.swing.JComboBox();
-        combo_ProdutoVendido = new javax.swing.JComboBox();
         combo_funcionario = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        QuantidadeProdutov = new javax.swing.JTextField();
+        combo_Produto = new javax.swing.JComboBox();
+        Salvar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("Data");
+
+        dataVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataVendaActionPerformed(evt);
+            }
+        });
 
         menu.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         menu.setText("Menu");
@@ -85,17 +95,38 @@ public class VendaView extends javax.swing.JFrame {
             }
         });
 
-        combo_ProdutoVendido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combo_ProdutoVendido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                combo_ProdutoVendidoMouseClicked(evt);
-            }
-        });
-
         combo_funcionario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         combo_funcionario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 combo_funcionarioMouseClicked(evt);
+            }
+        });
+        combo_funcionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_funcionarioActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Quantidade");
+
+        combo_Produto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_Produto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combo_ProdutoMouseClicked(evt);
+            }
+        });
+        combo_Produto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_ProdutoActionPerformed(evt);
+            }
+        });
+
+        Salvar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Salvar1.setText("Salvar");
+        Salvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Salvar1ActionPerformed(evt);
             }
         });
 
@@ -113,18 +144,29 @@ public class VendaView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(dataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
-                                .addComponent(combo_ProdutoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(71, 71, 71)
-                                .addComponent(combo_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 36, Short.MAX_VALUE))
+                                .addGap(115, 115, 115)
+                                .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 141, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(limpa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(105, 105, 105)
                         .addComponent(Salvar)
-                        .addGap(93, 93, 93)
-                        .addComponent(menu)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(menu))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(combo_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(QuantidadeProdutov, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(combo_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Salvar1)
+                        .addGap(27, 27, 27)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -137,9 +179,14 @@ public class VendaView extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_ProdutoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(QuantidadeProdutov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Salvar1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(menu)
                     .addComponent(Salvar)
@@ -151,16 +198,23 @@ public class VendaView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-        try {
+         try {
             // TODO add your handling code here:
-             Venda v = new Venda (0);
-                                
-                               VendaController vendaController = new VendaController();
-                               vendaController.inserirVenda(v);
+     VendaController vendaController = new VendaController();
+          //capturar o id do produto
+             ClienteController c = new ClienteController();
+             
+             int id_cliente = c.getIdByNome_cliente((String)combo_cliente.getSelectedItem());
+             System.out.println(id_cliente);
+
+            Venda v = new Venda (0,0,0,0,0);
+                            
+                          
+                           vendaController.inserirVenda(v);
         } catch (SQLException ex) {
             Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
@@ -186,27 +240,58 @@ public class VendaView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_combo_clienteMouseClicked
 
-    private void combo_ProdutoVendidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_ProdutoVendidoMouseClicked
-        try {
-            // TODO add your handling code here:
-             ProdutoVendidoController c = new ProdutoVendidoController();
-                        Vector v = c.getNomes();
-                        combo_ProdutoVendido.setModel(new DefaultComboBoxModel(v));
-        } catch (SQLException ex) {
-            Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_combo_ProdutoVendidoMouseClicked
-
     private void combo_funcionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_funcionarioMouseClicked
         try {
             // TODO add your handling code here:
             FuncionarioController f = new FuncionarioController();
                             Vector v = f.getNomes();
-                            combo_ProdutoVendido.setModel(new DefaultComboBoxModel(v));
+                            combo_funcionario.setModel(new DefaultComboBoxModel(v));
         } catch (SQLException ex) {
             Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_combo_funcionarioMouseClicked
+
+    private void combo_funcionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_funcionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_funcionarioActionPerformed
+
+    private void combo_ProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_ProdutoMouseClicked
+        try {
+            // TODO add your handling code here:
+            ProdutoController p = new ProdutoController();
+            Vector v = p.getNomes();
+            combo_Produto.setModel(new DefaultComboBoxModel(v));
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutovendidoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_combo_ProdutoMouseClicked
+
+    private void combo_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_ProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_ProdutoActionPerformed
+
+    private void Salvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salvar1ActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            ProdutoVendidoController produtoVendidoController = new ProdutoVendidoController();
+            //capturar o id do produto
+            ProdutoController p = new ProdutoController();
+
+            int id_produto = p.getIdByNome_produto((String)combo_Produto.getSelectedItem());
+            System.out.println(id_produto);
+
+            ProdutoVendido PV = new ProdutoVendido (0,0,id_produto);;
+            produtoVendidoController.inserirProdutoVendido(PV);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutovendidoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_Salvar1ActionPerformed
+
+    private void dataVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,12 +328,15 @@ public class VendaView extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField QuantidadeProdutov;
     private javax.swing.JButton Salvar;
-    private javax.swing.JComboBox combo_ProdutoVendido;
+    private javax.swing.JButton Salvar1;
+    private javax.swing.JComboBox combo_Produto;
     private javax.swing.JComboBox combo_cliente;
     private javax.swing.JComboBox combo_funcionario;
     private javax.swing.JTextField dataVenda;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton limpa;
     private javax.swing.JButton menu;
     // End of variables declaration//GEN-END:variables

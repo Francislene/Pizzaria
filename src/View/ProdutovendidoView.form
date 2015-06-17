@@ -39,7 +39,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="QuantidadeProdutov" min="-2" pref="204" max="-2" attributes="0"/>
                       <EmptySpace pref="34" max="32767" attributes="0"/>
-                      <Component id="combo_Pv" min="-2" max="-2" attributes="0"/>
+                      <Component id="combo_Produto" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -53,7 +53,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="QuantidadeProdutov" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="combo_Pv" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="combo_Produto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="117" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -77,7 +77,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="QuantidadeProdutov">
     </Component>
-    <Component class="javax.swing.JComboBox" name="combo_Pv">
+    <Component class="javax.swing.JComboBox" name="combo_Produto">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -89,8 +89,8 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="combo_PvMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_PvActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="combo_ProdutoMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_ProdutoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Salvar">

@@ -1,6 +1,7 @@
 
 package Controller;
 
+import Model.Estoque;
 import Model.Funcionario;
 import Model.ProdutoVendido;
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +22,10 @@ public class ProdutoVendidoController {
             Util util = new Util(); // inicializar a classe util
             Connection conexao = util.conecta();//utilizar o método conecta da classe util
                 
-            String sql = "INSERT INTO Funcionario (Quantidade) VALUES (?)";
+            String sql = "INSERT INTO Produto_Vendido (Produto_ID_Produto,Quantidade) VALUES (?,?)";
             PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
-           statement.setInt(1,PV.getQuantidade());
+           statement.setInt(2,PV.getQuantidade());
+           statement.setInt(1,PV.getID_Produto());
           
            
              
@@ -38,7 +41,7 @@ public class ProdutoVendidoController {
     }
   public void selectProdutoVendido()throws SQLException {
         try {
-            String sql = "SELECT * FROM ProdutoVendido";
+            String sql = "SELECT * FROM Produto_Vendido";
             Util util = new Util(); // inicializar a classe util
              Connection conexao = util.conecta();//utilizar o método conecta da classe util
             Statement statement = conexao.createStatement();
@@ -49,7 +52,7 @@ public class ProdutoVendidoController {
                 int Quantidade = result.getInt("Quantidade");
                 
                 
-                String output = "Agenda #%d: %s ";
+                String output = "Agenda #%d: %s -%s ";
                 System.out.println(String.format(output, ++count, Quantidade ));
                                 
                                 statement.close();
@@ -61,11 +64,11 @@ public class ProdutoVendidoController {
     }
   
   public void atualiza() throws SQLException{
-  String sql = "UPDATE Funcionario SET Quantidade=?";
+  String sql = "UPDATE Produto_Vendido SET Quantidade=?";
   Connection conexao = null;
  
 PreparedStatement statement = conexao.prepareStatement(sql);{
-            statement.setInt(1,5);
+            statement.setInt(1,6);
             
             
         
@@ -76,42 +79,66 @@ if (rowsUpdated > 0) {
     
 }
   }
-  public Vector getNomes() throws SQLException{
-      String sql = "SELECT Quantidade FROM ProdutoVendido";
+    
+  public ArrayList getAll() throws SQLException {
+        try {
+            String sql = "SELECT * FROM Produto_Vendido";
+
+            Util util = new Util();
+          ArrayList<Estoque> lista;
+          try (Connection conexao = Util.conecta(); Statement statement = conexao.createStatement()) {
+              ResultSet result = statement.executeQuery(sql);
+              lista = new ArrayList<>();
+              int count = 0;
+              while (result.next()) {
+              Estoque E = new Estoque(result.getInt("Quantidade"),result.getInt("Produto_ID_Produto"));
+              lista.add(E);
+              }
+          }
+            return lista;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+  
+  public Vector getQuantidade() throws SQLException{
+      String sql = "SELECT Quantidade FROM Produto_Vendido";
       Vector v = new Vector();
             Util util = new Util();
             Connection conexao = util.conecta();
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
             while(result.next()){
-                v.add(result.getString("Quantidade"));
+                v.add(result.getInt("Quantidade"));
             }
             
         return v;
-  } 
-  
-  public int getIdByQuantidade(String quantidade){
+  }
+ 
+  public int getIdByQuantidade(int Quantidade){
       
       int id=-1;
 //    consultar no banco o usuário que tem nome igual ao Nome, retornar o ID desse usuário
 try{
     Util util = new Util();
     Connection conexao = Util.conecta();
-    String sql = "Select ID_Item from Quantidade where Nome like '"+quantidade+"'";
+    String sql = "Select ID from Produto_Vendido where Quantidade like '"+Quantidade+"'";
     Statement statement = conexao.createStatement();
     ResultSet result = statement.executeQuery(sql);
     while (result.next()){
-        id=result.getInt("ID_Item");
+        id=result.getInt("ID");
        
     }
 }catch (SQLException ex ){
-    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE,null,ex);
+    Logger.getLogger(ProdutoVendidoController.class.getName()).log(Level.SEVERE,null,ex);
     
     }
     return id;
 } 
 
 
-   
+ 
 }  
 

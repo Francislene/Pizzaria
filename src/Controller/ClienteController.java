@@ -131,19 +131,7 @@ if (rowsUpdated > 0) {
             
         return v;
   }
-  public Cliente getPessoaByCPF(String CPF_cliente) throws SQLException {
-        String sql = "SELECT * FROM Cliente WHERE CPF like '%" + CPF_cliente + "%'"; //Consulta SQL
-        Util util = new Util(); //inicializando minha classe q faz conexão com banco de dados
-        Connection conexao = Util.conecta(); //faz a conexão com banco
-        Statement statement = conexao.createStatement();//usa da conqxão para pegar a credencial para acesso ao banco
-        ResultSet result = statement.executeQuery(sql);//executa a consulta SQL e agora retoena valores, por isso ResultSet
-        Cliente C = null;  //declaração de variavel  pessoa 
-        while (result.next()) {
-        C = new Cliente(result.getString("Nome_cliente"), result.getString("Endereco"), result.getString("Email_cliente"), result.getString("RG_cliente"), result.getString("CPF_cliente"),result.getInt("Telefone"));// inicializa pessoa
-        }
-        return C;
-
-    }
+ 
   public int getIdByNome_cliente(String Nome_cliente){
       
       int id=-1;

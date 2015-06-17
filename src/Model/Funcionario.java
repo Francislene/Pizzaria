@@ -23,6 +23,21 @@ public class Funcionario {
         this.ID_Funcionario = ID_Funcionario;
     }
 
+    public Funcionario(String nome_Funcionario, String telefone, String email_Funcionario, String RG_Funcionario, String login_Funcionario, String senha, String CPF_Funcionario, String tipo_de_acesso, String endereco_Funcionario, String carteira_de_trabalho) {
+        this.nome_Funcionario = nome_Funcionario;
+        this.telefone = telefone;
+        this.email_Funcionario = email_Funcionario;
+        this.RG_Funcionario = RG_Funcionario;
+        this.login_Funcionario = login_Funcionario;
+        this.senha = senha;
+        this.CPF_Funcionario = CPF_Funcionario;
+        this.tipo_de_acesso = tipo_de_acesso;
+        this.endereco_Funcionario = endereco_Funcionario;
+        this.carteira_de_trabalho = carteira_de_trabalho;
+    }
+
+   
+
     public String getNome_Funcionario() {
         return nome_Funcionario;
     }
