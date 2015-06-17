@@ -4,12 +4,21 @@ package Model;
 
 public class ProdutoVendido {
     
-    int ID_Item ,Quantidade,ID_Produto;
+    int ID_Item ,Quantidade,ID_venda,ID_Produto;
 
-    public ProdutoVendido(int ID_Item, int Quantidade, int ID_Produto) {
+    public ProdutoVendido(int ID_Item, int Quantidade, int ID_Produto, int ID_venda) {
         this.ID_Item = ID_Item;
         this.Quantidade = Quantidade;
         this.ID_Produto = ID_Produto;
+         this.ID_venda = ID_venda;
+    }
+
+    public int getID_venda() {
+        return ID_venda;
+    }
+
+    public void setID_venda(int ID_venda) {
+        this.ID_venda = ID_venda;
     }
 
     public int getID_Item() {
