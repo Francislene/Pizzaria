@@ -18,20 +18,19 @@ import pizzaria.Util;
 
 public class VendaController {
       
-     public void inserirVenda(Venda V) throws SQLException {
-        try {
+     public int inserirVenda(Venda V) throws SQLException {
+       int rowsInserted = 0;
+         try {
             
             Util util = new Util(); // inicializar a classe util
              try (Connection conexao = Util.conecta()) {
-                 String sql = "INSERT INTO Venda (idVenda, cliente_ID_cliente, Funcionario_ID_Funcionario, Produto_Vendido_ID_Item, Data) VALUES (?,?,?,?,?)";
+                 String sql = "INSERT INTO Venda (cliente_ID_cliente, Funcionario_ID_Funcionario, Data) VALUES (?,?,?)";
                  PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
-                 statement.setInt(1,V.getIdVenda());
-                 statement.setInt(2,V.getID_cliente());
-                 statement.setInt(3,V.getID_Funcionario());
-                 statement.setInt(4,V.getID_Item());
-                 statement.setInt(5,V.getData());
+                 statement.setInt(1,V.getID_cliente());
+                 statement.setInt(2,V.getID_Funcionario());
+                 statement.setDate(3,V.getData());
                    
-                   int rowsInserted = statement.executeUpdate(); // Executa a inserção e retorna valor != 0 se inseriu (ID de inserção do banco)
+                    rowsInserted = statement.executeUpdate(); // Executa a inserção e retorna valor != 0 se inseriu (ID de inserção do banco)
                    if (rowsInserted > 0) {
                        System.out.println("Novo usuário inserido com sucesso");
                    }
@@ -40,6 +39,7 @@ public class VendaController {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return rowsInserted;
     }
   public void selectVenda()throws SQLException {
         try {
@@ -91,8 +91,8 @@ if (rowsUpdated > 0) {
             ArrayList<Venda> lista = new ArrayList<>();
             int count = 0;
             while (result.next()) {
-            Venda V = new Venda(result.getInt("idVenda"),result.getInt("cliente_ID_cliente"), result.getInt("Funcionario_ID_Funcionario"), result.getInt("Produto_Vendido_ID_Item"), result.getInt("Data"));
-            lista.add(V);
+//            Venda V = new Venda(result.getInt("idVenda"),result.getInt("cliente_ID_cliente"), result.getInt("Funcionario_ID_Funcionario"), result.getInt("Produto_Vendido_ID_Item"), result.getInt("Data"));
+       //     lista.add(V);
             }
   
             statement.close();

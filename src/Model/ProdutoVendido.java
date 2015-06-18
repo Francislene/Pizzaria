@@ -13,6 +13,13 @@ public class ProdutoVendido {
          this.ID_venda = ID_venda;
     }
 
+    public ProdutoVendido(int ID_venda, int Quantidade, int ID_Produto) {
+        this.Quantidade = Quantidade;
+        this.ID_venda = ID_venda;
+        this.ID_Produto = ID_Produto;
+    }
+    
+
     public int getID_venda() {
         return ID_venda;
     }

@@ -15,6 +15,8 @@ import Model.Funcionario;
 import Model.ProdutoVendido;
 import Model.Venda;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +27,7 @@ import javax.swing.DefaultComboBoxModel;
  * @author info206
  */
 public class VendaView extends javax.swing.JFrame {
+               Vector<ProdutoVendido> vetorProdutos = new Vector<ProdutoVendido>();
 
     /**
      * Creates new form VendaView
@@ -145,22 +148,20 @@ public class VendaView extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel1)
-                                .addGap(34, 34, 34)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(jLabel1))
+                                    .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(245, 245, 245)
                                 .addComponent(menu))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(190, 190, 190)
-                                    .addComponent(combo_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(combo_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(dataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
@@ -169,7 +170,7 @@ public class VendaView extends javax.swing.JFrame {
                                         .addComponent(combo_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(Salvar1)))))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(32, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,47 +202,40 @@ public class VendaView extends javax.swing.JFrame {
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         try {
-            try {
-               // TODO add your handling code here:
-        VendaController vendaController = new VendaController();
-             //capturar o id do produto
-                ClienteController c = new ClienteController();
-                
-                int id_cliente = c.getIdByNome_cliente((String)combo_cliente.getSelectedItem());
-                System.out.println(id_cliente);
+            // TODO add your handling code here:
+             ClienteController c = new ClienteController();
+             VendaController vendaController = new VendaController();
+              ProdutoVendidoController produtoVendidoController = new ProdutoVendidoController();
+
+          //capturar o id do produto
+             int id_cliente = c.getIdByNome_cliente((String)combo_cliente.getSelectedItem());
+             System.out.println(id_cliente);
+              FuncionarioController F = new FuncionarioController();
+              int id_funcionario = F.getIdBynome_Funcionario((String)combo_funcionario.getSelectedItem());
              
-                
-               
-                Venda v = new Venda (0,0,0,0,0);
-               vendaController.inserirVenda(v);
-           } catch (SQLException ex) {
-               Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
-           }
-            
-            VendaController vendaController = new VendaController();
-        FuncionarioController F = new FuncionarioController();
-                 int id_funcionario = F.getIdBynome_Funcionario((String)combo_funcionario.getSelectedItem());
-                System.out.println(id_funcionario);
-                 Venda v = new Venda (0,0,0,0,0);
-               vendaController.inserirVenda(v);
-        } catch (SQLException ex) {
+            //formata data para data sql
+             java.util.Date dt1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataVenda.getText());
+              java.sql.Date  dataConvertida;
+              dataConvertida = new java.sql.Date(dt1.getTime());
+              
+             Venda v = new Venda(dataConvertida,id_cliente,id_funcionario);
+           int id_venda= vendaController.inserirVenda(v);
+
+           
+           
+        for (int i = 0; i < vetorProdutos.size(); i++)
+{
+    vetorProdutos.get(i).setID_venda(id_venda);
+    produtoVendidoController.inserirProdutoVendido(vetorProdutos.get(i));
+}       } catch (SQLException ex) {
+            Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
         }
-         try {
-            // TODO add your handling code here:
-
-            ProdutoVendidoController produtoVendidoController = new ProdutoVendidoController();
-            //capturar o id do produto
-            ProdutoController p = new ProdutoController();
-
-            int id_produto = p.getIdByNome_produto((String)combo_Produto.getSelectedItem());
-            System.out.println(id_produto);
-
-            ProdutoVendido PV = new ProdutoVendido (0,0,id_produto);;
-            produtoVendidoController.inserirProdutoVendido(PV);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutovendidoView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
+           
+          
+        
 
               
     }//GEN-LAST:event_SalvarActionPerformed
@@ -300,21 +294,16 @@ public class VendaView extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_ProdutoActionPerformed
 
     private void Salvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salvar1ActionPerformed
-        try {
             // TODO add your handling code here:
 
-            ProdutoVendidoController produtoVendidoController = new ProdutoVendidoController();
             //capturar o id do produto
             ProdutoController p = new ProdutoController();
-
             int id_produto = p.getIdByNome_produto((String)combo_Produto.getSelectedItem());
             System.out.println(id_produto);
-
-            ProdutoVendido PV = new ProdutoVendido (0,0,id_produto);
-            produtoVendidoController.inserirProdutoVendido(PV);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutovendidoView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            //inicializar o produto vendido
+            ProdutoVendido PV = new ProdutoVendido (-1,id_produto,Integer.parseInt(QuantidadeProdutov.getText()));
+            //adiciona produto ao vetor de produtos vendidos
+            vetorProdutos.add(PV);
 
     }//GEN-LAST:event_Salvar1ActionPerformed
 

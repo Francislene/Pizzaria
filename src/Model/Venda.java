@@ -1,30 +1,41 @@
 package Model;
 
-public class Venda {
-    int idVenda, Data, ID_cliente, ID_Funcionario, ID_Item;
+import java.sql.Date;
 
-    public Venda(int idVenda, int Data, int ID_cliente, int ID_Funcionario, int ID_Item) {
+public class Venda {
+    int idVenda, ID_cliente, ID_Funcionario;
+    Date  Data;
+
+   //consulta
+    public Venda(int idVenda, Date Data, int ID_cliente, int ID_Funcionario, int ID_Item) {
         this.idVenda = idVenda;
         this.Data = Data;
         this.ID_cliente = ID_cliente;
         this.ID_Funcionario = ID_Funcionario;
-        this.ID_Item = ID_Item;
+    }
+    //inserir
+
+    public Venda(Date Data, int ID_cliente, int ID_Funcionario) {
+        this.Data = Data;
+        this.ID_cliente = ID_cliente;
+        this.ID_Funcionario = ID_Funcionario;
     }
 
+    public Date getData() {
+        return Data;
+    }
+
+    public void setData(Date Data) {
+        this.Data = Data;
+    }
+    
+ 
     public int getIdVenda() {
         return idVenda;
     }
 
     public void setIdVenda(int idVenda) {
         this.idVenda = idVenda;
-    }
-
-    public int getData() {
-        return Data;
-    }
-
-    public void setData(int Data) {
-        this.Data = Data;
     }
 
     public int getID_cliente() {
@@ -43,13 +54,7 @@ public class Venda {
         this.ID_Funcionario = ID_Funcionario;
     }
 
-    public int getID_Item() {
-        return ID_Item;
-    }
 
-    public void setID_Item(int ID_Item) {
-        this.ID_Item = ID_Item;
-    }
 
   
     
