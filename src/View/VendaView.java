@@ -221,7 +221,8 @@ public class VendaView extends javax.swing.JFrame {
              Venda v = new Venda(dataConvertida,id_cliente,id_funcionario);
            int id_venda= vendaController.inserirVenda(v);
 
-           
+          //System.out.println("=====Id Venda++");
+           //System.out.println(id_venda);
            
         for (int i = 0; i < vetorProdutos.size(); i++)
 {

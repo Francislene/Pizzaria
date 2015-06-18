@@ -60,7 +60,4 @@ System.out.println("Erro na conexão "+ sqlex);
            Connection conexao = conecta();
            Statement stmt = conexao.createStatement();
            stmt.execute(sql);
-           
-           
-      
-       }}
+}}

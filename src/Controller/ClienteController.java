@@ -139,11 +139,11 @@ if (rowsUpdated > 0) {
 try{
     Util util = new Util();
     Connection conexao = Util.conecta();
-    String sql = "Select ID from Cliente where Nome_cliente like '"+Nome_cliente+"'";
+    String sql = "Select ID_cliente from Cliente where Nome_cliente like '"+Nome_cliente+"'";
     Statement statement = conexao.createStatement();
     ResultSet result = statement.executeQuery(sql);
     while (result.next()){
-        id=result.getInt("ID");
+        id=result.getInt("ID_cliente");
        
     }
 }catch (SQLException ex ){

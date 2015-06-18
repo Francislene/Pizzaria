@@ -22,10 +22,12 @@ public class ProdutoVendidoController {
             Util util = new Util(); // inicializar a classe util
             Connection conexao = util.conecta();//utilizar o método conecta da classe util
                 
-            String sql = "INSERT INTO Produto_Vendido (Produto_ID_Produto,Quantidade) VALUES (?,?)";
+            String sql = "INSERT INTO Produto_Vendido (Quantidade, Produto_ID_Produto,Venda_idVenda) VALUES (?,?,?)";
             PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
-           statement.setInt(2,PV.getQuantidade());
-           statement.setInt(1,PV.getID_Produto());
+           
+            statement.setInt(1,PV.getQuantidade());
+            statement.setInt(2,PV.getID_Produto());
+            statement.setInt(3,PV.getID_venda());
           
            
              
@@ -50,10 +52,10 @@ public class ProdutoVendidoController {
             while (result.next()){
                                     System.out.println(result);
                 int Quantidade = result.getInt("Quantidade");
+                int ID_venda = result.getInt("ID_venda");
                 
-                
-                String output = "Agenda #%d: %s -%s ";
-                System.out.println(String.format(output, ++count, Quantidade ));
+                String output = "Agenda #%d: %s -%s -s% ";
+                System.out.println(String.format(output, ++count, Quantidade,ID_venda  ));
                                 
                                 statement.close();
                                 conexao.close();
@@ -64,7 +66,7 @@ public class ProdutoVendidoController {
     }
   
   public void atualiza() throws SQLException{
-  String sql = "UPDATE Produto_Vendido SET Quantidade=?";
+  String sql = "UPDATE Produto_Vendido SET Quantidade=? , Produto_ID_Produto=?, Venda_idVenda=? ";
   Connection conexao = null;
  
 PreparedStatement statement = conexao.prepareStatement(sql);{
@@ -85,14 +87,14 @@ if (rowsUpdated > 0) {
             String sql = "SELECT * FROM Produto_Vendido";
 
             Util util = new Util();
-          ArrayList<Estoque> lista;
+          ArrayList<ProdutoVendido> lista;
           try (Connection conexao = Util.conecta(); Statement statement = conexao.createStatement()) {
               ResultSet result = statement.executeQuery(sql);
               lista = new ArrayList<>();
               int count = 0;
               while (result.next()) {
-              Estoque E = new Estoque(result.getInt("Quantidade"),result.getInt("Produto_ID_Produto"));
-              lista.add(E);
+              ProdutoVendido pv = new ProdutoVendido(result.getInt("Quantidade"),result.getInt("Produto_ID_Produto"), result.getInt("Venda_idVenda"));
+              lista.add(pv);
               }
           }
             return lista;
@@ -124,11 +126,11 @@ if (rowsUpdated > 0) {
 try{
     Util util = new Util();
     Connection conexao = Util.conecta();
-    String sql = "Select ID from Produto_Vendido where Quantidade like '"+Quantidade+"'";
+    String sql = "Select ID_Item from Produto_Vendido where Quantidade like '"+Quantidade+"'";
     Statement statement = conexao.createStatement();
     ResultSet result = statement.executeQuery(sql);
     while (result.next()){
-        id=result.getInt("ID");
+        id=result.getInt("ID_Item");
        
     }
 }catch (SQLException ex ){
