@@ -80,7 +80,7 @@ if (rowsUpdated > 0) {
 }
     
 }
-  }
+  }/*
     
   public ArrayList getAll() throws SQLException {
         try {
@@ -140,7 +140,7 @@ try{
     return id;
 } 
 
-
+*/
  
 }  
 

@@ -105,7 +105,7 @@ if (rowsUpdated > 0) {
             System.out.println(e.getMessage());
             return null;
         }
-    }
+    }/*
   public Vector getData() throws SQLException{
       String sql = "SELECT Data FROM Venda";
       Vector v = new Vector();
@@ -141,7 +141,7 @@ try{
     }
 
     return id;
-} 
+} */
   }
 
 
