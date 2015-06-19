@@ -183,7 +183,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void botaoProdutoVendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProdutoVendidoActionPerformed
         // TODO add your handling code here:
-        ProdutovendidoView frame = new ProdutovendidoView();  
+        Listatudo frame = new Listatudo();  
         frame.setVisible(true);
     }//GEN-LAST:event_botaoProdutoVendidoActionPerformed
 
