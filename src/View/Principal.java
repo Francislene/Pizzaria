@@ -70,7 +70,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         botaoProdutoVendido.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        botaoProdutoVendido.setText("Lista Produtos");
+        botaoProdutoVendido.setText("Listas");
         botaoProdutoVendido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoProdutoVendidoActionPerformed(evt);
